@@ -1,0 +1,63 @@
+<mat-toolbar>
+  <!-- <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+    <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+  </button> -->
+  <button mat-icon-button style="color: #eaf8bf !important;" (click)="sidenav.toggle()">
+  @if (sidenav.mode === 'over') {
+    @if (!sidenav.opened) {
+      <mat-icon>menu</mat-icon>
+    } @else {
+      <mat-icon>close</mat-icon>
+    }
+  }
+</button>
+  Top Roll 🧻
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav>
+    <mat-nav-list>
+      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="/">
+        <mat-icon matListItemIcon>home</mat-icon>
+        Home
+      </mat-list-item>
+      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="/menu/proveedores">
+        <mat-icon matListItemIcon>contacts_product</mat-icon>
+        Proveedores
+      </mat-list-item>
+      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="/materia-prima">
+        <mat-icon matListItemIcon>inventory_2</mat-icon>
+        Materia Prima
+      </mat-list-item>
+      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="/productos">
+        <mat-icon matListItemIcon>inventory</mat-icon>
+        Productos
+      </mat-list-item>
+      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="/ingresos">
+        <mat-icon matListItemIcon>trending_up</mat-icon>
+        Ingresos
+      </mat-list-item>
+    
+      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="/egresos">
+          <mat-icon matListItemIcon>trending_down</mat-icon>
+        Egresos
+      </mat-list-item>
+      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="/pedidos">
+          <mat-icon matListItemIcon>format_list_bulleted</mat-icon>
+        Pedidos
+      </mat-list-item>
+      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="/clientes">
+          <mat-icon matListItemIcon>groups_3</mat-icon>
+        Clientes
+      </mat-list-item>
+      </mat-nav-list>
+  </mat-sidenav>
+
+ <mat-sidenav-content>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container> 
+
