@@ -15,12 +15,13 @@ import { MatIconModule } from '@angular/material/icon'; // Para el ícono de vis
 import { MatToolbarModule } from '@angular/material/toolbar'; // Opcional, para un encabezado
 
 import { Router } from '@angular/router'; // Para la navegación
+import { SharedService } from '../services/shared-service';
 
 @Component({
   selector: 'app-inicio',
   // imports: [MatButtonModule, CommonModule],
   imports: [CommonModule,
-    FormsModule, // Para usar ngModel
+    FormsModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
@@ -32,33 +33,23 @@ import { Router } from '@angular/router'; // Para la navegación
 })
 export class Inicio {
 
-  public bandera: boolean= true;
-  constructor(private router: Router){
+  constructor(private router: Router, public s: SharedService){
     
   }
-  
-  // continuar() {
-  //   // Usa el método navigate() para navegar a la ruta del menú
-  //   this.router.navigate(['/menu']);
-  //   this.bandera=false;
-
-  // }
 
   username = '';
   password = '';
   hidePassword = true; // Para alternar la visibilidad de la contraseña
 
- 
-
   login() {
     // Aquí iría tu lógica de autenticación
-    console.log('Usuario:', this.username);
-    console.log('Contraseña:', this.password);
+    //console.log('Usuario:', this.username);
+    //console.log('Contraseña:', this.password);
 
     // Simulación de autenticación exitosa
     if (this.username === 'admin' && this.password === 'admin') {
+      this.s.bandera=true;
       this.router.navigate(['/menu']); // Redirige al menú principal
-      this.bandera=false;
     } else {
       alert('Usuario o contraseña incorrectos.');
     }

@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 64px); // Ajusta según la altura de tu toolbar
-  background-color: #f0f2f5; // Un color de fondo suave
+  background-color: #eaf8bf; // Un color de fondo suave
 }
 
 .login-card {
@@ -16,6 +16,7 @@
     text-align: center;
     margin-bottom: 20px;
     font-size: 1.5em;
+    color: #27476e
   }
 
   mat-form-field {
@@ -27,9 +28,11 @@
     width: 100%;
     padding: 10px 0;
     font-size: 1.1em;
+    color: #27476e;
   }
 }
 
 mat-toolbar {
-  padding: 0 20px;
+  background-color: #27476e;
+  color: #eaf8bf;
 }

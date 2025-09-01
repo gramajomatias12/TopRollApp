@@ -1,6 +1,6 @@
 
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,9 +8,10 @@ import { MatSidenavContainer } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavContent } from '@angular/material/sidenav';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import { RouterOutlet, RouterLink, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconButton } from '@angular/material/button';
+import { SharedService } from '../services/shared-service';
 
 @Component({
   selector: 'app-menu',
@@ -18,25 +19,33 @@ import { MatIconButton } from '@angular/material/button';
   templateUrl: './menu.html',
   styleUrl: './menu.scss'
 })
-export class Menu {
+export class Menu implements AfterViewInit{
 
-  @ViewChild(MatSidenav, {static: true})
+  @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  constructor(private observer: BreakpointObserver) {
+  constructor(private observer: BreakpointObserver, public s: SharedService, private router: Router) {
 
   }
 
-  ngOnInit(): void {
+
+  cerrar(){
+    
+      this.s.bandera=false;
+      this.router.navigate(['/']); // Redirige al menú principal
+  
+  }
+
+  ngAfterViewInit(): void { 
     this.observer.observe(["(max-width: 800px)"])
-    .subscribe((res) => {
-      if(res.matches) {
-        this.sidenav.mode = "over";
-        this.sidenav.close();
-      } else {
-        this.sidenav.mode = "side";
-        this.sidenav.open();
-      }
-    })
+      .subscribe((res) => {
+        if(res.matches) {
+          this.sidenav.mode = "over";
+          this.sidenav.close();
+        } else {
+          this.sidenav.mode = "side";
+          this.sidenav.open();
+        }
+      });
   }
 }
