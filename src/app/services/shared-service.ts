@@ -6,4 +6,97 @@ import { Injectable } from '@angular/core';
 
 export class SharedService {
   public bandera: any= undefined;
+
+
+  // setEntidad(entidad: string, param: any, nolog: boolean = false) {
+  //   return new Promise((resolve, errorEvent) => {
+
+  //     let urlParams = new URLSearchParams();
+  //     urlParams.append('entidad', entidad);
+  //     urlParams.append('value', JSON.stringify(param));
+  //     // console.log(JSON.stringify(param));
+  //     let params: string = urlParams.toString();
+  //     //  console.log(this.auth.headers)
+  //     this.http.post(this.auth.UrlEntidad, params, { headers: this.auth.headers })
+  //       .subscribe({
+  //         next: (resultado) => {
+  //           if (!nolog) this.addStack(params, resultado);
+  //           let d: any = resultado;//JSON.parse(resultado.toString())
+  //           if (d[0]?.isException) {
+  //             this.mensaje(d[0]?.mensaje);
+  //             errorEvent(d[0]);
+  //             if (d[0].error == 1) {
+  //               this.auth.logout();
+  //             }
+  //           }
+  //           else {
+  //             resolve(d);
+  //           }
+  //         }, error: (error) => {
+  //           let msg: string = error.message;
+  //           errorEvent({ "mensaje": msg });
+  //           console.error(error);
+  //         }
+  //       });
+  //   })
+  // }
+
+  
+  // getEntidad(entidad: string, param?: any, nolog: boolean = false) {
+  //   return new Promise((resolve, errorEvent) => {
+
+  //     if (this.auth.loginInfo?.sesion == null) {
+  //       return;
+  //     }
+
+  //     let params: string;
+  //     if (typeof param === 'number' && Number.isInteger(param)) {
+  //       param = { id: param };
+  //     }
+
+  //     if (param)
+  //       params = `${this.auth.UrlEntidad}/${entidad}/${JSON.stringify(param)}`;
+  //     else
+  //       params = `${this.auth.UrlEntidad}/${entidad}`;
+
+
+  //     this.http.get<any>(params, { headers: this.auth.headers })
+  //       .subscribe({
+  //         next: (resultado) => {
+  //           if (!nolog) this.addStack(params, resultado);
+  //           let d: any = resultado; //JSON.parse(resultado.toString())
+  //           // console.log(resultado);
+  //           if (d[0]?.isException) {
+  //             this.mensaje(d[0]?.mensaje);
+  //             errorEvent(d[0]);
+  //             if (d[0].mensaje.substring(0, 11) == 'SESSIONERR:') {
+  //               this.auth.logout();
+  //             }
+  //           }
+  //           else {
+  //             // console.log(d);
+  //             resolve(d);
+  //           }
+  //         }, error: (error) => {
+  //           console.log(params);
+  //           // console.log(1)
+  //           let msg: string = error.message;
+  //           if (msg.substring(0, 2) == '[{') {
+  //             let d = JSON.parse(msg);
+  //             msg = d.mensaje;
+  //             if (d[0].error == 1) {
+  //               this.auth.logout();
+  //             }
+  //           }
+
+  //           this.mensaje(msg);
+  //           errorEvent({ "mensaje": msg });
+
+  //           console.error(error);
+  //         }
+  //       });
+  //   });
+  // }
+
+
 }

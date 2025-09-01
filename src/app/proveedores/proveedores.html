@@ -1,1 +1,49 @@
-<p>proveedores works!</p>
+<mat-toolbar class="toolbars">
+    <mat-toolbar-row>
+        Proveedores
+        <span class="spacer"></span>
+        <!-- <button mat-button [routerLink]="['/menu/proveedores/',0]">NUEVO</button> -->
+        <button mat-button>Nuevo</button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+@if(proveedores.length == 0){
+<mat-toolbar style="background-color: transparent;">
+    <mat-toolbar-row>
+        <span class="spacer"></span>
+        @if(loading()){
+        <mat-progress-bar mode="query"></mat-progress-bar>
+        }
+        @else{
+        <span>Aún no se han definido proveedores</span>
+        }
+        <span class="spacer"></span>
+    </mat-toolbar-row>
+</mat-toolbar>
+}
+@else{
+<mat-toolbar>
+    <mat-toolbar-row>
+        <!-- <span>Lista de Proveedores</span>
+        <span class="spacer"></span> -->
+    
+        <mat-form-field class="input-filtro" style="width: 330px;">
+            <input matInput type="search" placeholder="Buscar por nombre del proveedor" [(ngModel)]="filtro">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-list>
+  @for (prov of filteredItems(); track prov.id) {
+    <!-- <mat-list-item [routerLink]="['/patrimonio/proveedores/', prov.id]"> -->
+    <mat-list-item> 
+      <mat-icon matListItemIcon>contacts</mat-icon>
+      <h3 matListItemTitle>{{ prov.n }}</h3>
+      <p matListItemLine>{{ prov.n }}</p>
+    </mat-list-item>
+  }
+</mat-list>
+
+} 
+

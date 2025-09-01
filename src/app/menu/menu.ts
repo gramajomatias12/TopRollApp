@@ -1,6 +1,6 @@
 
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,7 +24,7 @@ export class Menu implements AfterViewInit{
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  constructor(private observer: BreakpointObserver, public s: SharedService, private router: Router) {
+  constructor(private observer: BreakpointObserver, public s: SharedService, private router: Router, private cdr: ChangeDetectorRef) {
 
   }
 
@@ -36,16 +36,18 @@ export class Menu implements AfterViewInit{
   
   }
 
-  ngAfterViewInit(): void { 
-    this.observer.observe(["(max-width: 800px)"])
-      .subscribe((res) => {
-        if(res.matches) {
-          this.sidenav.mode = "over";
-          this.sidenav.close();
-        } else {
-          this.sidenav.mode = "side";
-          this.sidenav.open();
-        }
-      });
+  ngAfterViewInit(): void {
+  this.observer.observe(["(max-width: 800px)"])
+    .subscribe((res) => {
+      if(res.matches) {
+        this.sidenav.mode = "over";
+        this.sidenav.close();
+      } else {
+        this.sidenav.mode = "side";
+        this.sidenav.open();
+      }
+      // Forzar la detección de cambios
+      this.cdr.detectChanges();
+    });
   }
 }
