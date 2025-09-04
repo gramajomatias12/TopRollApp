@@ -35,12 +35,12 @@
 </mat-toolbar>
 
 <mat-list>
-  @for (prov of filteredItems(); track prov.id) {
+  @for (prov of filteredItems(); track prov.cdProveedor) {
     <!-- <mat-list-item [routerLink]="['/patrimonio/proveedores/', prov.id]"> -->
     <mat-list-item> 
       <mat-icon matListItemIcon>contacts</mat-icon>
-      <h3 matListItemTitle>{{ prov.n }}</h3>
-      <p matListItemLine>{{ prov.n }}</p>
+      <h3 matListItemTitle>{{ prov.dsProveedor }}</h3>
+      <p matListItemLine>{{ prov.dsProveedor }}</p>
     </mat-list-item>
   }
 </mat-list>

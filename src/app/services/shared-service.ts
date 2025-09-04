@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { IPatProveedor } from './clases';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +10,14 @@ import { Injectable } from '@angular/core';
 export class SharedService {
   public bandera: any= undefined;
 
+  private apiUrl = 'http://localhost:5169/api/Proveedores'; 
+  //private apiUrl = 'https://localhost:7077/api/Proveedores';
+  // 4. Inyecta HttpClient en el constructor
+  constructor(private http: HttpClient) { }
+
+  getProveedores(): Observable<IPatProveedor[]> {
+    return this.http.get<IPatProveedor[]>(this.apiUrl);
+  }
 
   // setEntidad(entidad: string, param: any, nolog: boolean = false) {
   //   return new Promise((resolve, errorEvent) => {
