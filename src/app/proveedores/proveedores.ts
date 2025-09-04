@@ -53,7 +53,7 @@ export class Proveedores {
   filteredItems() {
   return this.proveedores.filter(prov =>
     prov.dsProveedor?.toLowerCase()?.includes(this.filtro.toLowerCase()) ||
-    prov.ema?.toLowerCase()?.includes(this.filtro.toLowerCase())
+    prov.dsEmail?.toLowerCase()?.includes(this.filtro.toLowerCase())
   );
 }
 }
