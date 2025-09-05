@@ -19,6 +19,25 @@ export class SharedService {
     return this.http.get<IPatProveedor[]>(this.apiUrl);
   }
 
+  getProveedor(id: number): Observable<IPatProveedor> {
+    // Construye la URL para obtener un solo proveedor, por ejemplo:
+    // https://localhost:7077/api/Proveedores/1
+    const url = `${this.apiUrl}/${id}`; 
+    return this.http.get<IPatProveedor>(url);
+  }
+
+  guardarProveedor(proveedor?: IPatProveedor): Observable<IPatProveedor> {
+    // La API de .NET espera un POST para crear un nuevo recurso
+    return this.http.post<IPatProveedor>(this.apiUrl, proveedor);
+  }
+
+  actualizarProveedor(proveedor?: IPatProveedor): Observable<IPatProveedor> {
+    // La API de .NET espera un PUT para actualizar un recurso existente
+    // La URL debe incluir el ID del proveedor
+    const url = `${this.apiUrl}/${proveedor?.cdProveedor}`;
+    return this.http.put<IPatProveedor>(url, proveedor);
+  }
+
   // setEntidad(entidad: string, param: any, nolog: boolean = false) {
   //   return new Promise((resolve, errorEvent) => {
 

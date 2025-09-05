@@ -1,0 +1,72 @@
+<mat-toolbar class="toolbars">
+    <mat-toolbar-row>
+        <button mat-icon-button [routerLink]="['/menu/proveedores']">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        
+        @if(!form.value.id ){
+        <span>Nuevo Proveedor</span>
+        }
+        @else {
+        <span class="toolbar-ellipsis">{{form.value.dsProveedor}}</span>
+        }
+        <span class="spacer"></span>
+        @if(!modoEditar()){
+        <button mat-button (click)="editar()">EDITAR</button>
+        }
+        @else{
+        <button mat-button [hidden]="!form.value.id" (click)="cancelar()">CANCELAR</button>
+        <button mat-button (click)="guardar()" [disabled]="form.invalid">GUARDAR</button>
+        }
+    </mat-toolbar-row>
+</mat-toolbar>
+<br>
+<mat-card appearance="outlined" style="width: 620px;">
+    @if(modoEditar()){
+    <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="guardar()">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="dsProveedor" />
+            </mat-form-field>
+
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Dirección</mat-label>
+                <input matInput formControlName="dsDireccion" />
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Teléfono</mat-label>
+                <textarea matInput formControlName="dsTelefono"></textarea>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Email</mat-label>
+                <textarea matInput formControlName="dsEmail"></textarea>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    }
+    @else{
+    <mat-card-content>
+        <mat-list>
+            <mat-list-item>
+                <mat-icon matListItemIcon>contacts</mat-icon>
+                <p matListItemTitle><strong>{{form.value.dsProveedor}}</strong></p>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon matListItemIcon>home_pin</mat-icon>
+                <p matListItemTitle>{{form.value.dsDireccion}}</p>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon matListItemIcon>call</mat-icon>
+                <p matListItemTitle>{{form.value.dsTelefono}}</p>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon matListItemIcon>mail</mat-icon>
+                <p matListItemTitle>{{form.value.dsEmail}}</p>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+    }
+</mat-card>

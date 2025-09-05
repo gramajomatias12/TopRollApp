@@ -2,8 +2,7 @@
     <mat-toolbar-row>
         Proveedores
         <span class="spacer"></span>
-        <!-- <button mat-button [routerLink]="['/menu/proveedores/',0]">NUEVO</button> -->
-        <button mat-button>Nuevo</button>
+        <button mat-button [routerLink]="['/menu/proveedor/',0]">NUEVO</button>
     </mat-toolbar-row>
 </mat-toolbar>
 
@@ -22,28 +21,24 @@
 </mat-toolbar>
 }
 @else{
+<br>
 <mat-toolbar>
     <mat-toolbar-row>
-        <!-- <span>Lista de Proveedores</span>
-        <span class="spacer"></span> -->
-    
-        <mat-form-field class="input-filtro" style="width: 330px;">
-            <input matInput type="search" placeholder="Buscar por nombre del proveedor" [(ngModel)]="filtro">
+        <mat-form-field class="input-filtro" style="width: 500px;">
+            <input matInput type="search" placeholder="Buscar por nombre del proveedor o tipo de materia prima" [(ngModel)]="filtro">
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
     </mat-toolbar-row>
 </mat-toolbar>
 
 <mat-list>
-  @for (prov of filteredItems(); track prov.cdProveedor) {
-    <!-- <mat-list-item [routerLink]="['/patrimonio/proveedores/', prov.id]"> -->
-    <mat-list-item> 
-      <mat-icon matListItemIcon>contacts</mat-icon>
-      <h3 matListItemTitle>{{ prov.dsProveedor }}</h3>
-      <p matListItemLine>{{ prov.dsProveedor }}</p>
+    @for (prov of filteredItems(); track prov.cdProveedor) {
+    <mat-list-item [routerLink]="['/menu/proveedor/', prov.cdProveedor]">
+        <mat-icon matListItemIcon>contacts</mat-icon>
+        <h3 matListItemTitle>{{ prov.dsProveedor }}</h3>
+        <p matListItemLine>{{ prov.dsProveedor }}</p>
     </mat-list-item>
-  }
+    }
 </mat-list>
 
-} 
-
+}

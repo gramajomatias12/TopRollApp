@@ -8,11 +8,12 @@ import { MatListModule } from "@angular/material/list";
 import { FormsModule } from '@angular/forms';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { SharedService } from '../services/shared-service';
+import { RouterModule} from '@angular/router';
 
 
 @Component({
   selector: 'app-proveedores',
-  imports: [MatToolbarModule, FormsModule, MatProgressBar, MatButtonModule, MatInputModule, MatIconModule, MatListModule],
+  imports: [MatToolbarModule, FormsModule, MatProgressBar, MatButtonModule, MatInputModule, MatIconModule, MatListModule, RouterModule],
   templateUrl: './proveedores.html',
   styleUrl: './proveedores.scss'
 })
@@ -22,7 +23,7 @@ export class Proveedores {
   public proveedores: IPatProveedor[] = [];
   public filtro: string = '';
 
-  constructor(private s: SharedService){
+  constructor(private s: SharedService, ){
     this.cargarProveedores();
   }
 
@@ -35,7 +36,7 @@ export class Proveedores {
         next: (data) => {
           this.proveedores = data;
           console.log('Datos de proveedores recibidos:', this.proveedores);
-          this.loading.set(false);
+          
         },
         error: (e) => console.error('Error al obtener proveedores:', e)
       });
@@ -45,9 +46,9 @@ export class Proveedores {
       // this.io.mensaje('Error al cargar proveedores');
       alert('Error al cargar proveedores');
       console.log(e);}
-    // } finally {
-    //  this.loading.set(false);
-    // }
+    finally {
+     this.loading.set(false);
+    }
   }
 
   filteredItems() {
