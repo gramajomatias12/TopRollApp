@@ -4,7 +4,7 @@
             <mat-icon>arrow_back</mat-icon>
         </button>
         
-        @if(!form.value.id ){
+        @if(!form.value.cdProveedor){
         <span>Nuevo Proveedor</span>
         }
         @else {
@@ -15,7 +15,7 @@
         <button mat-button (click)="editar()">EDITAR</button>
         }
         @else{
-        <button mat-button [hidden]="!form.value.id" (click)="cancelar()">CANCELAR</button>
+        <button mat-button [hidden]="!form.value.cdProveedor" (click)="cancelar()">CANCELAR</button>
         <button mat-button (click)="guardar()" [disabled]="form.invalid">GUARDAR</button>
         }
     </mat-toolbar-row>
