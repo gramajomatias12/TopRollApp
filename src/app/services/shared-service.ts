@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { IPatProveedor } from './clases';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +10,33 @@ import { Injectable } from '@angular/core';
 export class SharedService {
   public bandera: any= undefined;
 
+  private apiUrl = 'http://localhost:5169/api/Proveedores'; 
+  //private apiUrl = 'https://localhost:7077/api/Proveedores';
+  // 4. Inyecta HttpClient en el constructor
+  constructor(private http: HttpClient) { }
+
+  getProveedores(): Observable<IPatProveedor[]> {
+    return this.http.get<IPatProveedor[]>(this.apiUrl);
+  }
+
+  getProveedor(id: number): Observable<IPatProveedor> {
+    // Construye la URL para obtener un solo proveedor, por ejemplo:
+    // https://localhost:7077/api/Proveedores/1
+    const url = `${this.apiUrl}/${id}`; 
+    return this.http.get<IPatProveedor>(url);
+  }
+
+  guardarProveedor(proveedor?: IPatProveedor): Observable<IPatProveedor> {
+    // La API de .NET espera un POST para crear un nuevo recurso
+    return this.http.post<IPatProveedor>(this.apiUrl, proveedor);
+  }
+
+  actualizarProveedor(proveedor?: IPatProveedor): Observable<IPatProveedor> {
+    // La API de .NET espera un PUT para actualizar un recurso existente
+    // La URL debe incluir el ID del proveedor
+    const url = `${this.apiUrl}/${proveedor?.cdProveedor}`;
+    return this.http.put<IPatProveedor>(url, proveedor);
+  }
 
   // setEntidad(entidad: string, param: any, nolog: boolean = false) {
   //   return new Promise((resolve, errorEvent) => {

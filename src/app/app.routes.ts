@@ -9,6 +9,7 @@ import { Ingresos } from './ingresos/ingresos';
 import { Egresos } from './egresos/egresos';
 import { Pedidos } from './pedidos/pedidos';
 import { Clientes } from './clientes/clientes';
+import { Proveedor } from './proveedores/proveedor/proveedor';
 
 export const routes: Routes = [
 
@@ -26,6 +27,7 @@ export const routes: Routes = [
       
       { path: 'home', component: Home },
       { path: 'proveedores', component: Proveedores },
+      { path: 'proveedor/:id', component: Proveedor },
       { path: 'materia-prima', component: MateriaPrima },
       { path: 'productos', component: Productos},
       { path: 'ingresos', component: Ingresos},
