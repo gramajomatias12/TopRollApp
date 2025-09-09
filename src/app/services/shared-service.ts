@@ -38,6 +38,10 @@ export class SharedService {
     return this.http.put<IPatProveedor>(url, proveedor);
   }
 
+  /////
+
+  
+
   // setEntidad(entidad: string, param: any, nolog: boolean = false) {
   //   return new Promise((resolve, errorEvent) => {
 
