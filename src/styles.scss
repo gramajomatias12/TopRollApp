@@ -61,3 +61,18 @@ form {
 }
 
 
+@media print {
+    .hide-print {
+        width: 0px !important;
+        height: 0px !important;
+        // visibility: hidden !important;
+        display: none !important;
+    }
+
+    .show-print {
+        width: 100% !important;
+        height: 100vh !important;
+        // visibility: hidden !important;
+        display: block !important;
+    }
+}

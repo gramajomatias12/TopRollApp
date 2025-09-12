@@ -1,36 +1,12 @@
-mat-toolbar {
-  background-color: #27476e;
-  color: #eaf8bf;
-  .mat-icon,
-  .mat-button {
-    color: #eaf8bf !important;
-  }
+button div,
+button mat-icon {
+    color: #F0F0F0;
+    font-weight: 200;
 }
 
-mat-sidenav {
-  width: 200px;
-  border-right: none;
-  padding: 16px 0;
-  background-color: #eaf8bf;
-}
-
-.content {
-  height: calc(100svh - 98px);
-  border-radius: 10px;
-  padding: 16px;
-  max-width: 1520px;
-  margin: 0 auto;
-  font-size: 16px;
-}
-
-mat-sidenav-container {
-  height: calc(100svh - 65px);
-}
-
-/* En tu archivo de estilos del componente (por ejemplo, menu.scss) */
-.logo-btn {
-  height: 24px; // Ajusta el tamaño según sea necesario
-  width: 24px;
-  // Puedes agregar más estilos para centrarlo o darle un color
-  //filter: invert(90%) sepia(30%) saturate(200%) hue-rotate(85deg); /* Ejemplo para cambiar el color de un SVG */
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: flex-start;
 }

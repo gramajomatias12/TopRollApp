@@ -1,68 +1,46 @@
-<mat-toolbar>
-  @if (sidenav) {
-    <button mat-icon-button (click)="sidenav.toggle()">
-      @if (sidenav.mode === 'over') {
-        @if (!sidenav.opened) {
-          <mat-icon>menu</mat-icon>
-        } @else {
-          <mat-icon>close</mat-icon>
-        }
-      }
+
+<div class="menu">
+    <button mat-button class="menu-button" routerLink="/menu/home">
+        <mat-icon>home</mat-icon>
+        <div>Inicio</div>
     </button>
-  }
-  
-  <span>Top Roll 🧻</span>
-  <span class="spacer"></span>
-  <button mat-button (click)="cerrar()" style="color: #eaf8bf;">
-     Cerrar Sesion
-  </button>
-</mat-toolbar>
 
+    
+    <button mat-button class="menu-button" routerLink="/menu/proveedores">
+        <mat-icon>contacts_product</mat-icon>
+        <div>Proveedores</div>
+    </button>
 
-<mat-sidenav-container [hidden]="s.bandera">
-   
-  <mat-sidenav>
-    <mat-nav-list>
-      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="/menu/home">
-        <mat-icon matListItemIcon>home</mat-icon>
-        Home
-      </mat-list-item>
-      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="/menu/proveedores">
-        <mat-icon matListItemIcon>contacts_product</mat-icon>
-        Proveedores
-      </mat-list-item>
-      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="/menu/materia-prima">
-        <mat-icon matListItemIcon>inventory_2</mat-icon>
-        Materia Prima
-      </mat-list-item>
-      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="/menu/productos">
-        <mat-icon matListItemIcon>inventory</mat-icon>
-        Productos
-      </mat-list-item>
-      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="/menu/ingresos">
-        <mat-icon matListItemIcon>trending_up</mat-icon>
-        Ingresos
-      </mat-list-item>
+    
+    <button mat-button class="menu-button" routerLink="/menu/materia-prima">
+        <mat-icon>inventory_2</mat-icon>
+        <div>Materia Prima</div>
+    </button>
+    
+    
 
-      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="/menu/egresos">
-        <mat-icon matListItemIcon>trending_down</mat-icon>
-        Egresos
-      </mat-list-item>
-      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="/menu/pedidos">
-        <mat-icon matListItemIcon>format_list_bulleted</mat-icon>
-        Pedidos
-      </mat-list-item>
-      <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" routerLink="/menu/clientes">
-        <mat-icon matListItemIcon>groups_3</mat-icon>
-        Clientes
-      </mat-list-item>
-    </mat-nav-list>
-  </mat-sidenav>
+    <button mat-button class="menu-button" routerLink="/menu/productos">
+        <mat-icon>inventory</mat-icon>
+        <div>Productos</div>
+    </button>
 
-  <mat-sidenav-content>
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    <button mat-button class="menu-button" routerLink="/menu/ingresos">
+        <mat-icon>trending_up</mat-icon>
+        <div>Ingresos</div>
+    </button>
 
+    <button mat-button class="menu-button" routerLink="/menu/egresos">
+        <mat-icon>trending_down</mat-icon>
+        <div>Egresos</div>
+    </button>
+
+    <button mat-button class="menu-button" routerLink="/menu/pedidos">
+        <mat-icon>format_list_bulleted</mat-icon>
+        <div>Pedidos</div>
+    </button>
+
+    <button mat-button class="menu-button" routerLink="/menu/clientes">
+        <mat-icon>inventory_2</mat-icon>
+        <div>groups_3</div>  
+    </button>
+</div>

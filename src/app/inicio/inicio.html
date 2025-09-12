@@ -1,7 +1,6 @@
-@if (!s.bandera){ 
 <mat-toolbar>
   <span>Top Roll 🧻</span>
-</mat-toolbar>
+</mat-toolbar> 
 
 <div class="login-container">
   <mat-card class="login-card">
@@ -9,26 +8,44 @@
       <mat-card-title>Iniciar Sesión</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form (ngSubmit)="login()">
-        <mat-form-field appearance="fill">
+      
+      <form>
+        <!-- <mat-form-field appearance="fill">
           <mat-label>Usuario</mat-label>
           <input matInput [(ngModel)]="username" name="username" required>
           <mat-icon matSuffix>person</mat-icon>
-        </mat-form-field>
+        </mat-form-field> -->
 
         <mat-form-field appearance="fill">
+              <mat-label>Usuario</mat-label>
+              <input matInput type="text" id="usuario" #usuario autocomplete="username"
+                (keyup.enter)="ingresar(usuario.value,pwd.value);">
+        </mat-form-field>
+
+        <!-- <mat-form-field appearance="fill">
           <mat-label>Contraseña</mat-label>
           <input matInput [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="password" name="password" required>
           <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Ocultar contraseña'" [attr.aria-pressed]="hidePassword">
             <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
+        </mat-form-field> -->
+        <mat-form-field appearance="fill">
+              <mat-label>Contraseña</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" id="pwd" #pwd autocomplete="current-password"
+                (keyup.enter)="ingresar(usuario.value,pwd.value);">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
         </mat-form-field>
 
-        <button mat-raised-button color="primary" type="submit" class="login-button">
+        <!-- <button mat-raised-button color="primary" type="submit" class="login-button">
           Ingresar
-        </button>
+        </button> -->
+        <button mat-raised-button class="login-button" color="primary" [disabled]="loading || !usuario.value ||  !pwd.value"
+                (click)="ingresar(usuario.value,pwd.value);">Ingresar</button>
+
       </form>
     </mat-card-content>
   </mat-card>
 </div>
-}

@@ -16,6 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar'; // Opcional, para 
 
 import { Router } from '@angular/router'; // Para la navegación
 import { SharedService } from '../services/shared-service';
+import { Auth } from '../services/auth';
 
 @Component({
   selector: 'app-inicio',
@@ -32,8 +33,14 @@ import { SharedService } from '../services/shared-service';
   styleUrl: './inicio.scss'
 })
 export class Inicio {
+  hide = true;
+  //sSelected: any;
+  //sistemas: any = [];
+  loading: boolean = false;
+  
+  //declare const md5: any;
 
-  constructor(private router: Router, public s: SharedService){
+  constructor(private router: Router, public auth: Auth, public s: SharedService) {
     
   }
 
@@ -41,18 +48,42 @@ export class Inicio {
   password = '';
   hidePassword = true; // Para alternar la visibilidad de la contraseña
 
-  login() {
-    // Aquí iría tu lógica de autenticación
-    //console.log('Usuario:', this.username);
-    //console.log('Contraseña:', this.password);
+  // login() {
+  //   // Aquí iría tu lógica de autenticación
+  //   //console.log('Usuario:', this.username);
+  //   //console.log('Contraseña:', this.password);
 
-    // Simulación de autenticación exitosa
-    if (this.username === 'admin' && this.password === 'admin') {
-      this.s.bandera=true;
-      this.router.navigate(['/menu']); // Redirige al menú principal
-    } else {
-      alert('Usuario o contraseña incorrectos.');
+  //   // Simulación de autenticación exitosa
+  //   if (this.username === 'admin' && this.password === 'admin') {
+  //     this.s.bandera=true;
+  //     this.router.navigate(['/menu']); // Redirige al menú principal
+  //   } else {
+  //     alert('Usuario o contraseña incorrectos.');
+  //   }
+  // }
+
+  ingresar(usuario: string, pwd: string) {
+
+    // if (!this.sSelected)
+    //   this.io.mensaje('No se ha elegido el sistema');
+    // else {
+      this.loading = true;
+      // this.auth.login(usuario, md5(pwd), this.sSelected.prefijo).then((resultado) => {
+        this.auth.login(usuario, pwd).then((resultado) => {
+        //  localStorage.setItem('sistema', this.sSelected.prefijo);
+        sessionStorage.setItem('loginInfo', JSON.stringify(this.auth.loginInfo));
+       
+        // if (this.router.url.substr(0, this.auth.urlSistema.length + 2) !== `/${this.auth.urlSistema.toLowerCase()}/`) {
+        //   this.router.navigate([`/${this.auth.urlSistema.toLowerCase()}`]);
+        // }
+        
+        //this.router.navigate([`/menu/home`]);
+        this.router.navigate(['/menu']);
+        this.loading = false;
+      }).catch(error => {
+        this.loading = false;
+        this.s.mensaje(error.mensaje);
+      })
     }
-  }
-
+  
 }

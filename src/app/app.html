@@ -1,3 +1,93 @@
+@if (!auth.loginInfo){
 <app-inicio></app-inicio>
+}
 
-<router-outlet/>
+<div [hidden]="!auth.loginInfo" class="hide-print">
+    <mat-toolbar color="primary" class="mat-elevation-z8 hide-print" [hidden]="isFullscreen()">
+
+        @if(sidenav.mode === 'over'){
+            <button mat-icon-button (click)="sidenav.toggle()">
+                @if(!sidenav.opened){
+                <mat-icon> menu </mat-icon>}
+                @else {
+                <mat-icon> close </mat-icon>
+                }
+            </button>
+        }
+
+        <!-- @if(auth.prefix)
+    {
+    <span class="toolbar-ellipsis">{{auth.sistema}} {{auth.modulo?`: ${auth.modulo}`:''}}</span>
+    }
+    @else{ -->
+        <span class="toolbar-ellipsis">Top Roll 🧻</span>
+        <!-- } -->
+
+        <div class="spacer"></div>
+
+
+        <!-- @if(auth.loginInfo?.av){
+    <img matChipAvatar class="avatar-50 mat-elevation-z8" [matMenuTriggerFor]="menuPerfil"
+      src="/assets/avatars/{{auth.loginInfo?.av}}.svg" />
+    } -->
+
+
+        <mat-menu #menuPerfil="matMenu" class="hide-print noprint">
+            <mat-list>
+                <mat-list-item>
+                    <!-- <span matListItemTitle>{{auth.loginInfo?.nombre}} {{auth.loginInfo?.apellido}}</span>
+          <span matListItemLine>{{auth.loginInfo?.login}}</span> -->
+                    <span matListItemTitle>Usuario</span>
+                </mat-list-item>
+            </mat-list>
+            <button mat-menu-item routerLink="/perfil">
+                <mat-icon class="button-submenu">person</mat-icon>
+                <div class="button-submenu">Perfil</div>
+            </button>
+            <button mat-menu-item (click)="salir()">
+                <mat-icon class="button-submenu">logout</mat-icon>
+                <div class="button-submenu">Salir</div>
+            </button>
+
+        </mat-menu>
+    </mat-toolbar>
+
+    <mat-sidenav-container autosize="true" color="primary">
+        <!-- <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8 hide-print" disableClose="true"
+      [opened]="!io.MenuForzarCollapse()"> -->
+        <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8 hide-print" [disableClose]="true">
+
+            <!-- <img class="avatar rotate" src="../assets/{{auth.par}}/icon-2.svg" /> -->
+
+            <!-- <h4 class="name">{{auth.partido}} </h4> -->
+            <h4 class="name">Top Roll </h4>
+            <mat-divider></mat-divider>
+
+            <div style="text-align: left;">
+                <!-- @switch (auth.prefix) {
+        @case ('TKT'){<app-ticket-menu></app-ticket-menu>}
+        @case ('COL'){<app-forms-menu></app-forms-menu>}
+        @case ('UA'){<app-ua-menu></app-ua-menu>}
+        @case ('PAT'){<app-pat-menu></app-pat-menu>}
+        @case ('ASI'){<app-asi-menu></app-asi-menu>}
+        @case ('FQR'){<app-fqr-menu></app-fqr-menu>}
+        @case ('PBI'){<app-pbi-menu></app-pbi-menu>}
+        @case ('PER'){<app-per-menu></app-per-menu>}
+        @case ('ESP'){<app-esp-menu></app-esp-menu>}
+        @case ('VEC'){<app-vec-menu></app-vec-menu>}
+        @case ('SPU'){<app-spu-menu></app-spu-menu>}
+        @case ('MMH'){<app-mmh-menu></app-mmh-menu>}
+        } -->
+                <app-menu></app-menu>
+
+            </div>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <div class="content mat-elevation-z8">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+</div>

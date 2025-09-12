@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IPatProveedor } from './clases';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class SharedService {
   private apiUrl = 'http://localhost:5169/api/Proveedores'; 
   //private apiUrl = 'https://localhost:7077/api/Proveedores';
   // 4. Inyecta HttpClient en el constructor
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public snackBar: MatSnackBar) { }
 
   getProveedores(): Observable<IPatProveedor[]> {
     return this.http.get<IPatProveedor[]>(this.apiUrl);
@@ -40,6 +41,11 @@ export class SharedService {
 
   /////
 
+  mensaje(m: string) {
+    this.snackBar.open(m, "", {
+      duration: 3000,
+    })
+  }
   
 
   // setEntidad(entidad: string, param: any, nolog: boolean = false) {
