@@ -18,6 +18,8 @@ import { Router } from '@angular/router'; // Para la navegación
 import { SharedService } from '../services/shared-service';
 import { Auth } from '../services/auth';
 
+declare const md5: any;
+
 @Component({
   selector: 'app-inicio',
   // imports: [MatButtonModule, CommonModule],
@@ -37,13 +39,21 @@ export class Inicio {
   //sSelected: any;
   //sistemas: any = [];
   loading: boolean = false;
-  
-  //declare const md5: any;
 
   constructor(private router: Router, public auth: Auth, public s: SharedService) {
-    
-  }
+    if (sessionStorage.getItem('loginInfo')) {
 
+      setTimeout(() => {
+
+        this.auth.loginSession(JSON.parse(sessionStorage.getItem('loginInfo') || '{}'));
+        // this.auth.loginInfo = JSON.parse(sessionStorage.getItem('loginInfo') || '{}');
+        // console.log(this.auth.loginInfo);
+        // this.router.navigate([/${this.auth.urlSistema.toLowerCase()}]);
+        this.router.navigate(['/menu']);
+    },100);
+
+  }
+  }
   username = '';
   password = '';
   hidePassword = true; // Para alternar la visibilidad de la contraseña
@@ -62,14 +72,11 @@ export class Inicio {
   //   }
   // }
 
-  ingresar(usuario: string, pwd: string) {
-
-    // if (!this.sSelected)
-    //   this.io.mensaje('No se ha elegido el sistema');
-    // else {
+  ingresar(usuario: string, pwd: string) 
+  {
       this.loading = true;
       // this.auth.login(usuario, md5(pwd), this.sSelected.prefijo).then((resultado) => {
-        this.auth.login(usuario, pwd).then((resultado) => {
+        this.auth.login(usuario, md5(pwd)).then((resultado) => {
         //  localStorage.setItem('sistema', this.sSelected.prefijo);
         sessionStorage.setItem('loginInfo', JSON.stringify(this.auth.loginInfo));
        
@@ -86,4 +93,5 @@ export class Inicio {
       })
     }
   
-}
+  }
+  

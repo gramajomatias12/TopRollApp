@@ -88,6 +88,30 @@ export class Auth {
           console.log(error);
         })
     })
+  }
+
+  // loginSession(loginInfo: any, sistema: string) {
+loginSession(loginInfo: any) {
+    this.loginInfo = loginInfo;
+    //this.prefix = sistema;
+    this.data = loginInfo['data'];
+    this.parametros = loginInfo['parametros'];
+
+    // for (let s of this.sistemas) {
+    //   if (s.prefijo === sistema) {
+    //     this.urlSistema = s.url;
+    //     this.sistema = s.nombre;
+    //   };
+    // }
+
+
+    let headers = new HttpHeaders();
+    headers = headers.append('x-sesion', this.loginInfo.sesion);
+    //headers = headers.append('x-prefix', this.prefix);
+    headers = headers.append('Content-Type', 'application/json');
+
+    this.headers = headers;
+
 
   }
 }

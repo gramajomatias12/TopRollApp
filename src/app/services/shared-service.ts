@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IPatProveedor } from './clases';
@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 
 export class SharedService {
-  public bandera: any= undefined;
+  public MenuForzarCollapse:WritableSignal<boolean>=signal(false);
 
   private apiUrl = 'http://localhost:5169/api/Proveedores'; 
   //private apiUrl = 'https://localhost:7077/api/Proveedores';

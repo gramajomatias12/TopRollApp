@@ -25,10 +25,11 @@ export class App {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  constructor( public auth: Auth){
+  constructor( public auth: Auth, public s :SharedService){
     
   }
 
+  //devuelve true si la página está en pantalla completa y false si no lo está.
   isFullscreen(): boolean {
     return !!(
       document.fullscreenElement ||

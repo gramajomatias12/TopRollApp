@@ -15,11 +15,7 @@
             </button>
         }
 
-        <!-- @if(auth.prefix)
-    {
-    <span class="toolbar-ellipsis">{{auth.sistema}} {{auth.modulo?`: ${auth.modulo}`:''}}</span>
-    }
-    @else{ -->
+        
         <span class="toolbar-ellipsis">Top Roll 🧻</span>
         <!-- } -->
 
@@ -48,14 +44,14 @@
                 <mat-icon class="button-submenu">logout</mat-icon>
                 <div class="button-submenu">Salir</div>
             </button>
-
         </mat-menu>
     </mat-toolbar>
 
     <mat-sidenav-container autosize="true" color="primary">
         <!-- <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8 hide-print" disableClose="true"
       [opened]="!io.MenuForzarCollapse()"> -->
-        <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8 hide-print" [disableClose]="true">
+        <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8 hide-print" [disableClose]="true"
+        [opened]="!s.MenuForzarCollapse()">
 
             <!-- <img class="avatar rotate" src="../assets/{{auth.par}}/icon-2.svg" /> -->
 
@@ -91,3 +87,4 @@
     </mat-sidenav-container>
 
 </div>
+
